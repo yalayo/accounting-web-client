@@ -5,6 +5,7 @@
 
 (defn show-movement-component [model]
   [:div
+   [:p (get model :user)]
    [:p (get model :topic)]
-   [:p (get model :user)]])
+   [:div {:id "unique_id"}]])
 
