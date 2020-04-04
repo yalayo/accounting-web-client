@@ -4,10 +4,8 @@
             [re-frame.core :as re-frame]))
 
 (defn show-account-component [model]
-  (let [product (get model :product)
-        name (get product :name)
-        image (get product :image)]
-    [:div
-     [:p name]
-     [:p image]]))
+  [:div
+   [:p (get model :code)]
+   [:p (get model :name)]
+   [:p (get model :level)]])
 

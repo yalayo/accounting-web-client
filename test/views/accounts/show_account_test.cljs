@@ -15,7 +15,7 @@
 (defcard-rg show-account
   [:div
    [:h1 [:i "Initial state"]]
-   [show-account* {}]])
+   [show-account* {:id #uuid "f95c18f9-2d73-4d6c-a44a-bb3f35a79517", :code "001", :name "Account", :level 1}]])
 
 (defcard-rg generated-show-account
   (let [models (gen/sample (s/gen ::spec/book-account))]
@@ -26,3 +26,6 @@
                      [show-account* m]])
                   models)]))
 
+(s/explain-str ::spec/book-account {:id #uuid "f95c18f9-2d73-4d6c-a44a-bb3f35a79517", :code "001", :name "Account", :level 1})
+
+(gen/sample (s/gen ::spec/book-account))
