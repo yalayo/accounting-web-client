@@ -25,7 +25,3 @@
                      [:pre (pr-str m)]
                      [show-account* m]])
                   models)]))
-
-(s/explain-str ::spec/book-account {:id #uuid "f95c18f9-2d73-4d6c-a44a-bb3f35a79517", :code "001", :name "Account", :level 1})
-
-(gen/sample (s/gen ::spec/book-account))
