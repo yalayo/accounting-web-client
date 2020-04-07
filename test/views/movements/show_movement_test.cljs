@@ -14,6 +14,8 @@
 
 (def movement {:id #uuid "f95c18f9-2d73-4d6c-a44a-bb3f35a79517", :topic "topic1", :owner-account {:id #uuid "f95c18f9-2d73-4d6c-a44a-bb3f35a79571", :name "user1"}, :produced-at #inst "1970-01-01T00:00:00.000-00:00", :consumed-at #inst "1970-01-01T00:00:00.000-00:00", :user "user1"})
 
+(def entry1 {:id #uuid "f95c18f9-2d73-4d6c-a44a-bb3f35a79517", :amount 0.5, :debit-account {:id #uuid "f95c18f9-2d73-4d6c-a44a-bb3f35a79517", :code "001", :name "Debit account", :level 1}, :credit-account {:id #uuid "f95c18f9-2d73-4d6c-a44a-bb3f35a79517", :code "001", :name "Credit account", :level 1}, :post-date #inst "1970-01-01T00:00:00.000-00:00", :movement {:id #uuid "f95c18f9-2d73-4d6c-a44a-bb3f35a79517", :topic "topic1", :owner-account {:id #uuid "f95c18f9-2d73-4d6c-a44a-bb3f35a79571", :name "user1"}, :produced-at #inst "1970-01-01T00:00:00.000-00:00", :consumed-at #inst "1970-01-01T00:00:00.000-00:00", :user "user1"}})
+
 (defcard-rg show-movement
   [:div
    [:h1 [:i "Initial state"]]
