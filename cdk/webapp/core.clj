@@ -4,7 +4,8 @@
             [stedi.cdk.alpha :as cdk]))
 
 (cdk/import [[App Construct Duration Stack] :from "@aws-cdk/core"]
-            [[Bucket] :from "@aws-cdk/aws-s3"]
+            [[Bucket BucketAccessControl] :from "@aws-cdk/aws-s3"]
+            [[BucketDeployment Source] :from "@aws-cdk/aws-s3-deployment"]
             [[Code Function Runtime Tracing] :from "@aws-cdk/aws-lambda"]
             [[LambdaRestApi] :from "@aws-cdk/aws-apigateway"])
 
@@ -14,21 +15,18 @@
 
 (def app (App))
 
-(def stack (Stack app "web-lambda"))
+(def stack (Stack app "accounting-web-client"))
 
-(def bucket (Bucket stack "web-lambda-bucket"))
+(def bucket
+  (Bucket stack
+          "accounting-web-bucket"
+          {:publicReadAccess true
+           :websiteIndexDocument "index.html"
+           }))
 
-(def web-fn
-  (Function stack
-            "web-fn"
-            {:code        code
-             :handler     "target/main.handler"
-             :runtime     (:NODEJS_10_X Runtime)
-             :environment {"BUCKET" (:bucketName bucket)}
-             :memorySize 128
-             :timeout (Duration/seconds 10)
-             }))
-
-(Bucket/grantWrite bucket web-fn)
-
-(def api (LambdaRestApi stack "web-lambda-api" {:handler web-fn}))
+(def deployment
+  (BucketDeployment stack
+                    "accounting-deployment"
+                    {:sources [(Source/asset "dist/")]
+                     :destinationBucket bucket
+                     }))
